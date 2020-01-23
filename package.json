@@ -1,0 +1,22 @@
+{
+  "name": "spacexl-api",
+  "version": "1.0.0",
+  "description": "SpaceX Launch Info Board API",
+  "main": "app.js",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-promise-router": "^3.0.3",
+    "helmet": "^3.21.2",
+    "pg": "^7.17.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon node app.js",
+    "test": ""
+  },
+  "author": "Nenad Kostic",
+  "license": "MIT"
+}
