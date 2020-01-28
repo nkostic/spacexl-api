@@ -27,12 +27,12 @@ router.get("/", async (req, res) => {
         } else {
           const insert_rocket = await db.query(
             `INSERT INTO rockets (rocket_name,rocket_type,reused,land_success) values ($1, $2, $3, $4) RETURNING id;`,
-			[
-				rocket.rocket_name,
-				rocket.rocket_type,
-				rocket.first_stage.cores[0].reused==true?true:false, // TODO In any of cores
-				rocket.first_stage.cores[0].land_success==true?true:false, // TODO In any of cores
-			]
+            [
+              rocket.rocket_name,
+              rocket.rocket_type,
+              rocket.first_stage.cores.filter(core => core.reused == true).length>0,
+              rocket.first_stage.cores.filter(core => core.land_success == true).length>0
+            ]
           );
           rocket_id = insert_rocket.rows[0].id;
         }
@@ -54,8 +54,8 @@ router.get("/", async (req, res) => {
             flight_id,
             links.mission_patch,
             links.mission_patch_small,
-			links.article_link,
-			links.reddit_launch==null?false:true
+            links.article_link,
+            links.reddit_launch == null ? false : true
           ]
         );
       }
