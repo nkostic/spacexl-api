@@ -1,9 +1,4 @@
-
--- Drop table
-
--- DROP TABLE public.rockets;
-
-CREATE TABLE public.rockets (
+CREATE TABLE IF NOT EXISTS public.rockets (
 	id serial NOT NULL,
 	rocket_name text NOT NULL,
 	rocket_type text NULL,
@@ -12,13 +7,7 @@ CREATE TABLE public.rockets (
 	CONSTRAINT rockets_pk PRIMARY KEY (id)
 );
 
-
-
--- Drop table
-
--- DROP TABLE public.flights;
-
-CREATE TABLE public.flights (
+CREATE TABLE IF NOT EXISTS public.flights (
 	id serial NOT NULL,
 	launch_date timestamp NOT NULL,
 	details text NULL,
@@ -29,13 +18,7 @@ CREATE TABLE public.flights (
 
 ALTER TABLE public.flights ADD CONSTRAINT flights_fk FOREIGN KEY (rocket_id) REFERENCES rockets(id);
 
-
-
--- Drop table
-
--- DROP TABLE public.links;
-
-CREATE TABLE public.links (
+CREATE TABLE IF NOT EXISTS public.links (
 	id serial NOT NULL,
 	flight_id int4 NOT NULL,
 	mission_patch text NULL,

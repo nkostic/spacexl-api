@@ -1,9 +1,10 @@
 {
   "name": "spacexl-api",
   "version": "1.0.0",
-  "description": "SpaceX Launch Info Board API",
+  "description": "SpaceX Launch API",
   "main": "app.js",
   "dependencies": {
+    "compression": "^1.7.4",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
@@ -11,11 +12,16 @@
     "helmet": "^3.21.2",
     "pg": "^7.17.1"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "chai-http": "^4.3.0",
+    "mocha": "^7.0.1"
+  },
   "scripts": {
     "start": "node app.js",
     "dev": "nodemon node app.js",
-    "test": ""
+    "seed": "node -e \"require('./controllers/seeder').seed()\"",
+    "test": "mocha --timeout 10000"
   },
   "author": "Nenad Kostic",
   "license": "MIT"
