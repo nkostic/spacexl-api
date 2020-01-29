@@ -1,6 +1,7 @@
 ## Spacexl-api
 ### Author: Nenad Kostic
 
+Spin up the backend locally with docker-compose
 ```sh
 docker-compose up -d
 ```
@@ -18,15 +19,7 @@ Seeding
 npm run seed
 ```
 
-Install dependencies
+Testing
 ```sh
-npm install
-```
-Start the api locally
-```sh
-npm run start
-```
-or Start the api locally in dev mode (this wil reload server when files change):
-```sh
-npm run dev
+npm run test
 ```
