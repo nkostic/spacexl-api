@@ -37,13 +37,9 @@ npm run test
 # to exit test control c on mac, ctrl c on windows 
 ```
 
-#### Start this api locally with yarn or npm
-```sh
-npm run dev
-```
-
 #### Develop with
 ```sh
 npm run dev
+# nodemon will reload the server on file save
 ```
 
