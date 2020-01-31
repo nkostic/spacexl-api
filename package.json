@@ -20,7 +20,7 @@
   "scripts": {
     "start": "node app.js",
     "dev": "nodemon node app.js",
-    "seed": "node -e \"require('./controllers/seeder').seed()\"",
+    "seed": "node -e \"require('./controllers/seedController').seed()\"",
     "test": "mocha --timeout 10000"
   },
   "author": "Nenad Kostic",

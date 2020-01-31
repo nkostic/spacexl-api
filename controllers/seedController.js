@@ -1,7 +1,7 @@
 const db = require("../db");
 const seedData = require("../lib/seed-data.json");
 
-module.exports.seed = async (req, res, next) => {
+module.exports.seed = async () => {
   const { rows } = await db.query(
     `SELECT
         (select count(1) from flights) as flights
@@ -60,14 +60,14 @@ module.exports.seed = async (req, res, next) => {
         );
       }
     }
-    return res.status(200).send({ 
-        message: "Database Seeded Successfully!",
-        results: true 
-    });
+    return {
+      message: "Database Seeded Successfully!",
+      results: true
+    };
   } else {
-    return res.status(304).send({ 
-        message: "Database is not empty, can not seed.",
-        results: false 
-    });
+    return {
+      message: "Database is not empty, can not seed.",
+      results: false
+    };
   }
 };

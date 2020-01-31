@@ -19,7 +19,7 @@ Seeding
 npm run seed
 ```
 
-Testing
+Testing (Stop the api before running this command)
 ```sh
 npm run test
 ```
