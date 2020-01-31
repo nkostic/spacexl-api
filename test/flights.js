@@ -1,44 +1,139 @@
-//process.env.NODE_ENV = "test";
-
-//Require the dev-dependencies
 let chai = require("chai");
 let chaiHttp = require("chai-http");
 let app = require("../app");
 let should = chai.should();
 
 chai.use(chaiHttp);
-//Our parent block
+
 describe("Flights", () => {
   beforeEach(done => {
-    //Before each test we empty the database
-    // Book.remove({}, (err) => {
-    //    done();
-    // });
     done();
   });
 
-  /*
-   * Test the /POST route
-   */
   describe("/POST api/get/flights", () => {
-    it("it should get all the flights", done => {
-      let filter = {
-        land: false,
-        reused: false,
-        with: false
-      };
+    it("It should not fetch results when filters undefined", done => {
       chai
         .request(app)
         .post("/api/get/flights")
-        .send(filter)
+        .send()
         .end((err, res) => {
-          res.should.have.status(200);
-          res.body.should.be.a("object");
-          res.body.should.have.property("errors");
-          res.body.errors.should.have.property("flights");
-          //res.body.errors.pages.should.have.property('kind').eql('required');
+          res.should.have.status(206);
+          res.body.should.be.a('object');
+          res.body.should.have.property('message');
+          res.body.should.have.property('message').eql('No Filters Passed!');
+          res.body.should.have.property('results');
+          res.body.results.should.be.a('array');
           done();
         });
     });
   });
+
+  describe("/POST api/get/flights", () => {
+    it("It should not fetch results when filters null", done => {
+      const filters = null;
+      chai
+        .request(app)
+        .post("/api/get/flights")
+        .send({filters})
+        .end((err, res) => {
+          res.should.have.status(206);
+          res.body.should.be.a('object');
+          res.body.should.have.property('message');
+          res.body.should.have.property('message').eql('No Filters Passed!');
+          res.body.should.have.property('results');
+          res.body.results.should.be.a('array');
+          done();
+        });
+    });
+  });
+
+  describe("/POST api/get/flights", () => {
+    it("It should not fetch results without filters.land passed", done => {
+      const filters = {
+        reused: false,
+        with: false
+      }
+      chai
+        .request(app)
+        .post("/api/get/flights")
+        .send({filters})
+        .end((err, res) => {
+          res.should.have.status(206);
+          res.body.should.be.a('object');
+          res.body.should.have.property('message');
+          res.body.should.have.property('message').eql('Filter LAND not passed!');
+          res.body.should.have.property('results');
+          res.body.results.should.be.a('array');
+          done();
+        });
+    });
+  });
+
+  describe("/POST api/get/flights", () => {
+    it("It should not fetch results without filters.reused passed", done => {
+      const filters = {
+        land: false,
+        with: false
+      }
+      chai
+        .request(app)
+        .post("/api/get/flights")
+        .send({filters})
+        .end((err, res) => {
+          res.should.have.status(206);
+          res.body.should.be.a('object');
+          res.body.should.have.property('message');
+          res.body.should.have.property('message').eql('Filter REUSED not passed!');
+          res.body.should.have.property('results');
+          res.body.results.should.be.a('array');
+          done();
+        });
+    });
+  });
+  
+  describe("/POST api/get/flights", () => {
+    it("It should not fetch results without filters.with passed", done => {
+      const filters = {
+        land: false,
+        reused: false
+      }
+      chai
+        .request(app)
+        .post("/api/get/flights")
+        .send({filters})
+        .end((err, res) => {
+          res.should.have.status(206);
+          res.body.should.be.a('object');
+          res.body.should.have.property('message');
+          res.body.should.have.property('message').eql('Filter WITH not passed!');
+          res.body.should.have.property('results');
+          res.body.results.should.be.a('array');
+          done();
+        });
+    });
+  });
+
+  describe("/POST api/get/flights", () => {
+    it("It should fetch results if filters passed and db is running locally", done => {
+      const filters = {
+        land: false,
+        reused: false,
+        with: false
+      }
+      chai
+        .request(app)
+        .post("/api/get/flights")
+        .send({filters})
+        .end((err, res) => {
+          res.should.have.status(200);
+          res.body.should.be.a('object');
+          res.body.should.have.property('message');
+          res.body.should.have.property('message').eql('Flights Successfully Fetched!');
+          res.body.should.have.property('results');
+          res.body.results.should.be.a('array');
+          done();
+        });
+    });
+  });
+
 });

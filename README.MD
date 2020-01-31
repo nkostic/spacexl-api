@@ -29,9 +29,12 @@ docker-compose down
 npm run seed
 ```
 
-#### Testing (Stop the api before running this command)
+#### Testing 
+Make sure you db is running for this integration tests to pass
 ```sh
 npm run test
+
+# to exit test control c on mac, ctrl c on windows 
 ```
 
 #### Start this api locally with yarn or npm

@@ -1,7 +1,34 @@
 const db = require("../db");
 
 module.exports.getFlights = async (req, res, next) => {
-  const { filters } = req.body;
+  let { filters } = req.body;
+
+  if(filters === undefined || filters === null){
+    return res.status(206).send({
+      message: "No Filters Passed!",
+      results: []
+    });
+  }else {
+    if(filters.land === undefined){
+      return res.status(206).send({
+        message: "Filter LAND not passed!",
+        results: []
+      });
+    }
+    if(filters.reused === undefined){
+      return res.status(206).send({
+        message: "Filter REUSED not passed!",
+        results: []
+      });
+    }
+    if(filters.with === undefined){
+      return res.status(206).send({
+        message: "Filter WITH not passed!",
+        results: []
+      });
+    }
+  }
+
   const { rows } = await db.query(
     `select
         f.id,
