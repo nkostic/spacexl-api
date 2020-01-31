@@ -10,11 +10,11 @@ services:
     environment:
       - POSTGRES_PASSWORD=robotsandpencils
   rest:
-    image: node:12
+    image: node:13.5.0
     volumes:
     - ./:/usr/src/app
     ports:
-    - "3001:3000"
+    - "3001:3001"
     depends_on:
     - "database"
     restart: always
@@ -22,8 +22,9 @@ services:
     working_dir: /usr/src/app
     environment:
       - NODE_ENV=production
-      - PGHOST=postgres
+      - PGHOST=database
       - PGUSER=postgres
       - PGDATABASE=postgres
       - PGPASSWORD=robotsandpencils
-      - PORT=3000
+      - PGPORT=5432
+      - PORT=3001
