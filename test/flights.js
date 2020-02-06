@@ -17,7 +17,7 @@ describe("Flights", () => {
         .post("/api/get/flights")
         .send()
         .end((err, res) => {
-          res.should.have.status(206);
+          res.should.have.status(400);
           res.body.should.be.a('object');
           res.body.should.have.property('message');
           res.body.should.have.property('message').eql('No Filters Passed!');
@@ -36,7 +36,7 @@ describe("Flights", () => {
         .post("/api/get/flights")
         .send({filters})
         .end((err, res) => {
-          res.should.have.status(206);
+          res.should.have.status(400);
           res.body.should.be.a('object');
           res.body.should.have.property('message');
           res.body.should.have.property('message').eql('No Filters Passed!');
@@ -58,7 +58,7 @@ describe("Flights", () => {
         .post("/api/get/flights")
         .send({filters})
         .end((err, res) => {
-          res.should.have.status(206);
+          res.should.have.status(400);
           res.body.should.be.a('object');
           res.body.should.have.property('message');
           res.body.should.have.property('message').eql('Filter LAND not passed!');
@@ -80,7 +80,7 @@ describe("Flights", () => {
         .post("/api/get/flights")
         .send({filters})
         .end((err, res) => {
-          res.should.have.status(206);
+          res.should.have.status(400);
           res.body.should.be.a('object');
           res.body.should.have.property('message');
           res.body.should.have.property('message').eql('Filter REUSED not passed!');
@@ -102,7 +102,7 @@ describe("Flights", () => {
         .post("/api/get/flights")
         .send({filters})
         .end((err, res) => {
-          res.should.have.status(206);
+          res.should.have.status(400);
           res.body.should.be.a('object');
           res.body.should.have.property('message');
           res.body.should.have.property('message').eql('Filter WITH not passed!');
