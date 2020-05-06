@@ -1,6 +1,8 @@
 ## Spacexl-api
 ### Author: Nenad Kostic
 
+This is example api.
+
 This API is publicly exposed on heroku free tier: https://spacexl-api.herokuapp.com/
 
 Demo of the app that consumes this api is publicly available on Netlify: https://spacexl.netlify.com/
